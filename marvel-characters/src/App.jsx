@@ -3,24 +3,22 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-
-
 function App() {
     const [Characters, setCharacters] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [id, setId] = useState(0);
+    const [loading, setLoading] = useState(true);
 
-    const getRequest = () => {
+    const getRequest = async () => {
       const charactersLines = 'http://localhost:3000/characters.json';
-      fetch(charactersLines)
+       fetch(charactersLines)
       .then((res) => {
         if(!res.ok){
           throw new Error('erreur HTTP')
         }
           return res.json()
       }).then((data)=>{
-        setCharacters(data?.characters || []);
+        setCharacters(data?.characters?.characters || []);
         console.log(data);
-        
         setLoading(false)
         
       }).catch((err) => {
@@ -36,22 +34,15 @@ function App() {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={viteLogo} className="logo" alt="Vite logo"/>
-                <img src={reactLogo} className="logo react" alt="React logo"/>
-                <h1>Marvel Characters</h1>
-            </header>
-            <main>
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <ul>
-                        {Characters.map((character, index) => (
-                            <li key={index}>{character.name}</li>
-                        ))}
-                    </ul>
-                )}
-            </main>
+          <div></div>
+          <div className='bg-white grid grid-cols-4 gap-4 p-4'>{Characters.map((list) => (
+            <div key={list.id} className='border p-4 rounded shadow'>
+              <li>name : {list.name}</li>
+              <li>id : {list.id}</li>
+              <li>identité : {list.realName}</li>
+              <li>universe : {list.universe}</li>
+            </div>
+          ))}</div>
         </div>
     );
     
