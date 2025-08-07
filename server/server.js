@@ -97,6 +97,11 @@ app.put('/characters.json/:characterId', async (req, res) => {
     
 });
 
+app.delete('/characters.json/:characterId', async (req, res) => {
+    const deleteId = parseInt(req.params.characterId);
+    res.status(501).json({ error: 'Not Implemented' });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
