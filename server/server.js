@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs').promises;
 const cors = require('cors');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -60,6 +61,40 @@ app.post('/characters.json', async (req, res) => {
         console.error('Error adding character:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+app.put('/characters.json/:characterId', async (req, res) => {
+    try{
+        const {body, params} = req;
+        const parseId = parseInt(params.characterId);
+
+        if(isNaN(parseId)){
+            return res.status(400).json({ error: 'Invalid character ID' });
+        }
+
+        const filePath = path.join(__dirname, 'characters.json');
+        const data = await fs.readFile(filePath, 'utf8');
+        const jsonData = JSON.parse(data);
+
+        const characterIndex = jsonData.characters.findIndex(char => char.id === parseId);
+
+        if(characterIndex === -1){
+            return res.status(404).json({ error: 'Character not found' });
+        }
+
+        jsonData.characters[characterIndex] = {
+            ...jsonData.characters[characterIndex],
+            ...body
+        };
+
+        await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2));
+        res.json({ message: 'Character updated successfully', character: jsonData.characters[characterIndex] });
+
+    }catch (error) {
+        console.error('Error updating character:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+    
 });
 
 
