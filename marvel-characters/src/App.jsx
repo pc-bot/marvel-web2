@@ -34,12 +34,16 @@ function App() {
     },[])
 
     return (
-        <div className="App">
-          <div className='bg-gray-800 text-white p-4 flex justify-between items-center'>
-            <button onClick={() => setOpenModalPost(true)}>post</button>
-
+        <div className="">
+          <div className='items-center justify-center flex'>
+          <div className='bg-white text-white font-bold text-xl shadow-md w-300 p-4 flex justify-center items-center'>
+            <button className='m-5 rounded-sm w-30 h-10 bg-blue-400 shadow-md'>get</button>
+            <button onClick={() => setOpenModalPost(true)} className='m-5 rounded-sm w-30 h-10 bg-green-400 shadow-md'>post</button>
+            <button className='m-5 rounded-sm w-30 h-10 bg-yellow-400 shadow-md'>put</button>
+            <button className='m-5 rounded-sm w-30 h-10 bg-red-400 shadow-md'>delete</button>
           </div>
-          <div className='bg-white mt-30 h-100 grid grid-cols-4 gap-4 p-4'>{Characters.map((list) => (
+          </div>
+          <div className='bg-white mt-5 h-100 grid grid-cols-4 gap-4 p-4'>{Characters.map((list) => (
             <div key={list.id} className=' shadow-lg p-4 rounded-lg bg-gray-100'>
               <p className='text-center'>{list.id}</p>
               <h2 className='text-center text-blue-900 font-bold'>{list.name}</h2>

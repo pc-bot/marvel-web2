@@ -1,6 +1,35 @@
 import React from "react";
 
 export default function Post({closeModalPost}) {
+    const handleSubmit = async (events) => {
+        events.preventDefault();
+        const formData = {
+            name: events.target.name.value,
+            realName: events.target.realName.value,
+            universe: events.target.universe.value
+        }
+
+        try{
+            const response = await fetch('http://localhost:3000/characters.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            closeModalPost();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    }
     return(
         <div className="flex items-center justify-center fixed inset-0  bg-opacity-30">
             <div className="bg-white p-6 rounded-lg shadow-lg w-100 h-90"> 

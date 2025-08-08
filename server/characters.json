@@ -47,6 +47,12 @@
       "name": "Thor",
       "realName": "Thor Odinson",
       "universe": "Earth-616"
+    },
+    {
+      "id": 10,
+      "name": "Deadpool",
+      "realName": "Wade Wilson",
+      "universe": "Earth-616"
     }
   ]
 }
