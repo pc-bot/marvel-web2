@@ -98,8 +98,33 @@ app.put('/characters.json/:characterId', async (req, res) => {
 });
 
 app.delete('/characters.json/:characterId', async (req, res) => {
+    try{
     const deleteId = parseInt(req.params.characterId);
-    res.status(501).json({ error: 'Not Implemented' });
+  
+    if(isNaN(deleteId)){
+        return res.status(400).json({ error: 'Invalid character ID' });
+    }       
+    
+    const filePath = path.join(__dirname, 'characters.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const jsonData = JSON.parse(data);
+
+    const characterIndex = jsonData.characters.findIndex(char => char.id === deleteId);
+
+    if(characterIndex === -1){
+        return res.status(404).json({ error: 'Character not found' });
+    }
+
+    const deletedCharacter = jsonData.characters.splice(characterIndex, 1)[0];
+    await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2));
+    res.status(204).send();
+
+    }
+    catch (error) {
+        console.error('Error deleting character:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+
+    }
 });
 
 

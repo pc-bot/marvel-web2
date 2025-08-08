@@ -37,12 +37,6 @@
       "universe": "Earth-616"
     },
     {
-      "id": 7,
-      "name": "Scarlet Witch",
-      "realName": "Wanda Maximoff",
-      "universe": "Earth-616"
-    },
-    {
       "id": 8,
       "name": "Hulk",
       "realName": "Bruce Banner",
@@ -53,12 +47,6 @@
       "name": "Thor",
       "realName": "Thor Odinson",
       "universe": "Earth-616"
-    },
-    {
-      "id": 10,
-      "name": "Batman",
-      "realName": "Bruce Wayne",
-      "universe": "Earth"
     }
   ]
 }
