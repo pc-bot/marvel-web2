@@ -34,6 +34,22 @@ function App() {
       })
 
     }
+
+    const handleAddCharacter = async (character) => {
+      const response = await fetch('http://localhost:3000/characters.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(character),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setCharacters([...Characters, result.character]);
+      } else {
+        console.error('Error adding character:', result.error);
+      }
+    };
      
     useEffect(() => {
       getRequest();
@@ -59,7 +75,7 @@ function App() {
             </div>
           ))}</div>
           {loading && <div className='text-center'>Loading...</div>}
-          {openModalPost && <Post closeModalPost={() => setOpenModalPost(false)} />}
+          {openModalPost && <Post closeModalPost={() => setOpenModalPost(false)} addCharacter={handleAddCharacter}/>}
           {openModalPut && <Put closeModalPut={() => setOpenModalPut(false)} />}
           {openModalGet && <Get closeModalGet={() => setOpenModalGet(false)} />}
           {openModalDelete && <Delete closeModalDelete={() => setOpenModalDelete(false)} />}

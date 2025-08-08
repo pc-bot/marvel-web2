@@ -53,6 +53,18 @@
       "name": "Deadpool",
       "realName": "Wade Wilson",
       "universe": "Earth-616"
+    },
+    {
+      "name": "black adam",
+      "realName": "black adam",
+      "universe": "unknown",
+      "id": 11
+    },
+    {
+      "name": "thanos ",
+      "realName": "thanos",
+      "universe": "Titan",
+      "id": 12
     }
   ]
 }
