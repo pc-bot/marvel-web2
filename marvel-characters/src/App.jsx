@@ -62,7 +62,7 @@ function App() {
             <button onClick={() => setOpenModalGet(true)} className='m-5 rounded-sm w-30 h-10 bg-blue-400 shadow-md'>get</button>
             <button onClick={() => setOpenModalPost(true)} className='m-5 rounded-sm w-30 h-10 bg-green-400 shadow-md'>post</button>
             <button onClick={() => setOpenModalPut(true)} className='m-5 rounded-sm w-30 h-10 bg-yellow-400 shadow-md'>put</button>
-            <button onClick={() => setOpenModalDelete(true)} className='m-5 rounded-sm w-30 h-10 bg-red-400 shadow-md'>delete</button>
+            <button onClick={() => setOpenModalDelete(true)} className='m-5 rounded-sm w-30 h-10 bg-red-400 shadow-md' >delete</button>
           </div>
           </div>
           <div className='bg-white mt-5 h-100 grid grid-cols-4 gap-4 p-4'>{Characters.map((list) => (
@@ -76,9 +76,9 @@ function App() {
           ))}</div>
           {loading && <div className='text-center'>Loading...</div>}
           {openModalPost && <Post closeModalPost={() => setOpenModalPost(false)} addCharacter={handleAddCharacter}/>}
-          {openModalPut && <Put closeModalPut={() => setOpenModalPut(false)} />}
+          {openModalPut && <Put closeModalPut={() => setOpenModalPut(false)}  refreshCharacters={getRequest} />}
           {openModalGet && <Get closeModalGet={() => setOpenModalGet(false)} />}
-          {openModalDelete && <Delete closeModalDelete={() => setOpenModalDelete(false)} />}
+          {openModalDelete && <Delete closeModalDelete={() => setOpenModalDelete(false)}  refreshCharacters={getRequest} />}
         </div>
     );
     
