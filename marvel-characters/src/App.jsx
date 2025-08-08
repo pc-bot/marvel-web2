@@ -3,10 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Post from './containers/post.jsx'
+import Put from './containers/put.jsx'
 
 function App() {
     const [Characters, setCharacters] = useState([]);
     const [openModalPost, setOpenModalPost] = useState(false);
+    const [openModalPut,setOpenModalPut] = useState(false)
     const [loading, setLoading] = useState(true);
 
     const getRequest = async () => {
@@ -39,7 +41,7 @@ function App() {
           <div className='bg-white text-white font-bold text-xl shadow-md w-300 p-4 flex justify-center items-center'>
             <button className='m-5 rounded-sm w-30 h-10 bg-blue-400 shadow-md'>get</button>
             <button onClick={() => setOpenModalPost(true)} className='m-5 rounded-sm w-30 h-10 bg-green-400 shadow-md'>post</button>
-            <button className='m-5 rounded-sm w-30 h-10 bg-yellow-400 shadow-md'>put</button>
+            <button onClick={() => setOpenModalPut(true)} className='m-5 rounded-sm w-30 h-10 bg-yellow-400 shadow-md'>put</button>
             <button className='m-5 rounded-sm w-30 h-10 bg-red-400 shadow-md'>delete</button>
           </div>
           </div>
@@ -54,6 +56,7 @@ function App() {
           ))}</div>
           {loading && <div className='text-center'>Loading...</div>}
           {openModalPost && <Post closeModalPost={() => setOpenModalPost(false)} />}
+          {openModalPut && <Put closeModalPut={() => setOpenModalPut(false)} />}
         </div>
     );
     
