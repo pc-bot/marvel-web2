@@ -53,6 +53,12 @@
       "name": "Thor",
       "realName": "Thor Odinson",
       "universe": "Earth-616"
+    },
+    {
+      "id": 10,
+      "name": "Batman",
+      "realName": "Bruce Wayne",
+      "universe": "Earth"
     }
   ]
 }
