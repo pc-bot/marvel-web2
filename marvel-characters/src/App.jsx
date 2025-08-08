@@ -46,6 +46,7 @@ function App() {
       const result = await response.json();
       if (response.ok) {
         setCharacters([...Characters, result.character]);
+        getRequest(); 
       } else {
         console.error('Error adding character:', result.error);
       }

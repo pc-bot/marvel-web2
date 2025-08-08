@@ -55,9 +55,12 @@ export default function Delete({closeModalDelete}, refreshCharacters) {
                         <input type="text" value={id} onChange={handleInput} />
                     </div>
                     {message && <p className="text-center text-green-500">{message}</p>}
-                    {error && <p className="text-center text-red-500">{error}</p>}
-                    <button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" onClick={handleDelete}>Delete</button>
-                    <button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" onClick={closeModalDelete}>Close</button>
+                    {error && <p className="text-center text-red-500 ">{error}</p>}
+                    <div className='flex justify-center items-center '>
+                        <button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 mx-5" onClick={handleDelete}>Delete</button>
+                        <button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 mx-5" onClick={closeModalDelete}>Close</button>
+                    </div>
+                    
                 </div>
             </div>      
     )
