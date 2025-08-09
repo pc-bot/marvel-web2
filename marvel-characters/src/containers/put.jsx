@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Put({ closeModalPut }) {
+export default function Put({ closeModalPut , refreshCharacters }) {
   const [characterId, setCharacterId] = useState('');
   const [formData, setFormData] = useState({
     name: '',
@@ -35,6 +35,12 @@ export default function Put({ closeModalPut }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'id') {
+      if (/^\d*$/.test(value)) { // Vérifier si l'ID est un nombre
+        setCharacterId(value);
+        setError(null);
+        setSuccess(false);
+        
+      }
       setCharacterId(value);
     } else {
       setFormData({
@@ -67,8 +73,12 @@ export default function Put({ closeModalPut }) {
 
       if (response.ok) {
         setSuccess(true);
-        setFormData({ name: '', realName: '', universe: '' }); // Réinitialiser après succès
-        setCharacterId(''); // Réinitialiser l'ID
+        setFormData({ name: '', realName: '', universe: '' });
+        setCharacterId('');
+        if (refreshCharacters) {
+          refreshCharacters();
+        }
+        setTimeout(() => {setSuccess(false);}, 3000);
       } else {
         setError(result.error || 'Update failed');
       }
@@ -92,7 +102,6 @@ export default function Put({ closeModalPut }) {
             onChange={handleInputChange}
             name="id"
             className="bg-gray-100 border border-gray-300 ml-2"
-            placeholder="Enter ID"
           />
         </div>
         <div>
@@ -105,7 +114,6 @@ export default function Put({ closeModalPut }) {
                 value={formData.name}
                 onChange={handleInputChange}
                 className="bg-gray-100 border border-gray-300"
-                required
               />
               <br />
             </div>
@@ -117,7 +125,6 @@ export default function Put({ closeModalPut }) {
                 value={formData.realName}
                 onChange={handleInputChange}
                 className="bg-gray-100 border border-gray-300"
-                required
               />
               <br />
             </div>
@@ -129,15 +136,13 @@ export default function Put({ closeModalPut }) {
                 value={formData.universe}
                 onChange={handleInputChange}
                 className="bg-gray-100 border border-gray-300"
-                required
               />
               <br />
             </div>
             <div className="flex justify-center items-center mt-7">
               <button
                 type="submit"
-                className="bg-green-500 rounded-md w-20 h-15 text-white"
-                disabled={loading}
+                className="bg-yellow-500 rounded-md w-20 h-15 text-white"
               >
                 {loading ? 'Updating...' : 'Update Character'}
               </button>

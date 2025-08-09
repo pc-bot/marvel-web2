@@ -49,14 +49,14 @@
       "universe": "Earth-616"
     },
     {
-      "id": 10,
-      "name": "DeadPool",
-      "realName": "Wade Wilson",
-      "universe": "Earth-616"
-    },
-    {
       "name": "Mr fantastic",
       "realName": "Red Richards",
+      "universe": "Earth-616",
+      "id": 10
+    },
+    {
+      "name": "Jean Grey",
+      "realName": "Jean Grey",
       "universe": "Earth-616",
       "id": 11
     }
