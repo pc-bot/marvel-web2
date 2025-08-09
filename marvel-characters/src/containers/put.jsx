@@ -78,7 +78,7 @@ export default function Put({ closeModalPut , refreshCharacters }) {
         if (refreshCharacters) {
           refreshCharacters();
         }
-        setTimeout(() => {setSuccess(false);}, 3000);
+        setTimeout(() => {setSuccess(false);}, 1000);
       } else {
         setError(result.error || 'Update failed');
       }
